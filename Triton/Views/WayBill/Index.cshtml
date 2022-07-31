@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Triton.Pages.WayBill.WayBill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WbId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WbFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WbFromContact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WbFromPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LineAddress1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LineAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WbToContact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WbToPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dimensions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialInstructions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reference)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbFromContact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbFromPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LineAddress1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LineAdd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbToContact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WbToPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dimensions)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialInstructions)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reference)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

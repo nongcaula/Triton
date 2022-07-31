@@ -1,0 +1,149 @@
+﻿@page
+@model Triton.Pages.WayBill.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+
+    <script src="~/js/jquery.min.js"></script>
+    <!-- #region datatables files -->
+    <link href="~/css/datatablecss.css" rel="stylesheet" />
+    <script src="~/js/datatables.js"></script>
+    <!-- #endregion -->
+    <script src="~/js/DataTables.Buttons.js"></script>
+    <script src="~/js/html5.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/jszip.min.js"></script>
+    <script src="~/js/pdfmake.min.js"></script>
+    <script src="~/js/vfs_fonts.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<div class="container">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            @{
+                if (Model.WayBill == null)
+                {
+                    <div class="panel-heading"><h4 class="text-center"> CREATE WAYBILL</h4></div>
+                }
+                else
+                {
+                    <div class="panel-heading"><h4 class="text-center">EDIT WAYBILL</h4></div>
+                }
+            }
+            <div class="panel-body">
+                <form method="post">
+                    @Html.HiddenFor(m => m.WayBill.Id)
+                    <div class="card">
+                        <h5 class="card-header">SHIPMENT</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipmentid">Reference Number</label>
+                                        @Html.EditorFor(model => model.WayBill.ReferenceNumber, new { htmlAttributes = new { @class = "form-control", @readOnly = "readonly", @required = "required" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Shipment Date</label>
+                                        @Html.EditorFor(model => model.WayBill.ShipmentDate, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    </div>
+
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipdate">Ship Date</label>
+                                        @Html.EditorFor(model => model.WayBill.ShipDate, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    </div>
+
+                                    <div class="">
+                                        <label for="shipdate">Vehicle</label>
+                                        @Html.DropDownListFor(model => model.WayBill.Vehicle, Model.wayBillModel.SelectList, "-- Select Vehicle --", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">SHIPMENT FROM</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipmentid">Company Name</label>
+                                        @Html.EditorFor(model => model.WayBill.Company, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipmentdate">Contact Name</label>
+                                        @Html.EditorFor(model => model.WayBill.FromContactName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Phone Number</label>
+                                        @Html.EditorFor(model => model.WayBill.FromPhoneNumber, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">TO–CONSIGNEE</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipmentdate">First Name</label>
+                                        @Html.EditorFor(model => model.WayBill.ToFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Address 1</label>
+                                        @Html.EditorFor(model => model.WayBill.Address1, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Address 2</label>
+                                        @Html.EditorFor(model => model.WayBill.Address2, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="">
+                                        <label for="shipmentdate">Last Name</label>
+                                        @Html.EditorFor(model => model.WayBill.ToLastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Postal Code</label>
+                                        @Html.EditorFor(model => model.WayBill.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="">
+                                        <label for="shipmentdate">Country</label>
+                                        @Html.EditorFor(model => model.WayBill.Country, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" asp-page-handler="Submit" class="btn btn-primary"> Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
